@@ -1,0 +1,125 @@
+\section{IPv6 et Python}
+
+\frame{
+	\frametitle{L'héritage socket}
+	Le support réseau de Python repose sur l'API \texttt{socket}
+	\begin{itemize}
+		\item Héritage de l'API C
+		\item Utilisée par Un bon nombre (toutes?) des librairies réseaux
+		\begin{itemize}
+			\item TwistedMatrix
+			\item HTTPLib2
+			\item etc.
+		\end{itemize}
+	\end{itemize}
+	Cette API est conforme au RFC 3493:
+	\begin{itemize}
+		\item La socket ouverte en IPv6
+		\item Les connexions IPv4 sont \textit{mappée} en connexions IPv6
+	\end{itemize}
+}
+
+\begin{frame}[fragile]{}
+	\frametitle{Un rappel sur la socket}
+	Une socket est identifiée par 5 paramètres:
+	\begin{itemize}
+		\item Le protocole de transport (TCP/UDP)
+		\item Adresse de l'hôte expéditeur
+		\item Port de l'application origine
+		\item Adresse de l'hôte destinataire
+		\item Port de l'application cible
+	\end{itemize}
+	
+	Sous Linux :
+	\begin{verbatim}
+% netstat -taun
+Connexions Internet actives (serveurs et établies)
+Proto Recv-Q Send-Q Adresse locale          Adresse distante        Etat      
+tcp        0      1 10.51.0.215:43742       10.35.1.191:631         ESTABLISHED  
+	\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{}
+	\frametitle{Un petit serveur IPv4}
+    \begin{minipage}{0.5\textwidth}
+      \inputminted[mathescape,
+        linenos,
+        fontsize=\scriptsize,
+        framesep=2mm]{python}{../echo_server_v4.py}
+    \end{minipage}
+	
+\end{frame}
+
+
+\begin{frame}[fragile]{}
+	\frametitle{Testons !}
+	
+	\begin{verbatim}
+% python ./echo_server_v4.py &
+% nc 127.0.0.1 50007
+Connected by ('127.0.0.1', 53112)
+kl
+kl
+^Z
+[2]  + 88737 suspended  nc 127.0.0.1 50007
+ % netstat -tan | grep 50007
+tcp4       0      0  127.0.0.1.50007        127.0.0.1.53112 
+tcp4       0      0  127.0.0.1.53112        127.0.0.1.50007 
+tcp4       0      0  *.50007                *.*             
+%
+	\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{}
+	\frametitle{Une IPv6-fication naïve}
+    \begin{minipage}{0.5\textwidth}
+      \inputminted[mathescape,
+        linenos,
+        fontsize=\scriptsize,
+        framesep=2mm]{python}{../echo_server_v6_naif.py}
+    \end{minipage}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{}
+	\frametitle{Testons !}
+	
+	\begin{verbatim}[fontsize=\tiny]
+% python ./echo_server_v6_naif.py &
+% nc ::1 50007 
+Connected by ('::1', 53224, 0, 0)
+dz
+dz
+^Z
+[2]  + 88997 suspended  nc ::1 50007
+% netstat -tan | grep 50007
+tcp6       0      0  ::1.50007              ::1.53224
+tcp6       0      0  ::1.53224              ::1.50007
+tcp46      0      0  *.50007                *.*             
+% nc 127.0.0.1 50007
+Connected by ('::ffff:127.0.0.1', 53242, 0, 0)
+lkjlkj
+lkjlkj
+^Z
+[2]  + 89045 suspended  nc 127.0.0.1 50007
+% netstat -tan | grep 50007
+tcp6       0      0  ::1.50007              ::1.53224       
+tcp6       0      0  ::1.53224              ::1.50007       
+tcp4       0      0  127.0.0.1.50007        127.0.0.1.53242 
+tcp4       0      0  127.0.0.1.53242        127.0.0.1.50007 
+tcp46      0      0  *.50007                *.*             
+	\end{verbatim}
+
+\end{frame}
+
+
+\frame{
+	\frametitle{}
+	\begin{itemize}
+		\item
+	\end{itemize}
+}
+

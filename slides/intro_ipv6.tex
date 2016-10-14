@@ -1,0 +1,94 @@
+\section{IPv6, pourquoi?}
+
+\frame{
+	\frametitle{Une tendance\ldots}
+	Aujourd'hui tout converge vers Internet (\textit{internet centrism}) :
+	\begin{itemize}
+		\item Téléphonie
+		\item \'Echanges bancaires et boursiers
+		\item Données de santé
+		\item Gestion de l'énergie
+		\item Contrôle de chaines de production
+		\item Etc.
+	\end{itemize}
+	La convergence et l'interopérabilité de ces applications est assurée par IP (entre autres).
+}
+
+\frame{
+	\frametitle{Un constat\ldots}
+	IPv4 est une expérience qui a mal tournée (dixit V.Cerf)
+	\begin{itemize}
+		\item Partitionnement des réseaux public et privés
+		\item Fin du modèle bout-en-bout
+		\item \'Epuisement des resources d'adresses IP disponibles
+	\end{itemize}
+}
+
+\pgfdeclareimage[interpolate=true,height=7cm]{cgn_nat}{./images/cgn_nat.jpg}
+\frame{
+	\frametitle{Pour en arriver là\ldots}
+	\begin{tikzpicture}
+		\clip (0, 0) rectangle (12,7);
+		\pgfputat{\pgfxy(0,0)}{\pgfbox[left,base]{\pgfuseimage{cgn_nat}}}
+	\end{tikzpicture}
+	\tiny{Source: \textit{Jason Flesher / Flickr}}
+}
+
+\pgfdeclareimage[interpolate=true,height=7cm]{ipv6_coming}{./images/ipv6_coming.jpg}
+\frame{
+	\frametitle{Puis arriva IPv6\ldots}
+	\begin{tikzpicture}
+		\clip (0, 0) rectangle (12,7);
+		\pgfputat{\pgfxy(0,0)}{\pgfbox[left,base]{\pgfuseimage{ipv6_coming}}}
+	\end{tikzpicture}
+	\tiny{Source: \textit{CaptainMeme}}
+}
+
+\frame{
+	\frametitle{La solution ?}
+	IPv6 a tout pour plaire:
+	\begin{itemize}
+		\item Un espace d'adressage quasi-infini
+		\item Un retour au modèle bout-en-bout
+		\item L'auto-configuration des paramètres réseau
+		\item et plein d'autres \textit{goodies} (Mobilité IP, segment routing, etc.)
+	\end{itemize}
+}
+
+\pgfdeclareimage[interpolate=true,height=7cm]{changement}{./images/changement.png}
+\frame{
+	\frametitle{Alors on y va ?}
+	\begin{tikzpicture}
+		\clip (0, 0) rectangle (12,7);
+		\pgfputat{\pgfxy(0,0)}{\pgfbox[left,base]{\pgfuseimage{changement}}}
+	\end{tikzpicture}
+}
+
+\frame{
+	\frametitle{Transition à tous les étages}
+	IPv6 n'est pas rétro-compatible avec IPv4 ! (\textit{it's a feature})
+	\begin{itemize}
+		\item IPv6 impose un nouveau plan d'adressage
+		\item Le réseau sera majoritairement double-pile
+		\item Les applications devront explicitement supporter IPv6
+	\end{itemize}
+	% TODO : mettre quelques images pour illustrer chaque point
+}
+
+
+\pgfdeclareimage[interpolate=true,height=6cm]{deal_with_it}{./images/deal_with_it.png}
+\frame{
+	\frametitle{Puis-je y échapper ?}
+	\large{Ignorer IPv6 $\implies$ Dette technologique !}
+	\begin{tikzpicture}
+		\clip (0, 0) rectangle (12,6);
+		\pgfputat{\pgfxy(0,0)}{\pgfbox[left,base]{\pgfuseimage{deal_with_it}}}
+	\end{tikzpicture}	
+}
+
+%\frame{
+%	\frametitle{}
+%	\begin{itemize}
+%		\item
+%	\end{itemize}
+%}

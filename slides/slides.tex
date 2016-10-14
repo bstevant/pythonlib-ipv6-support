@@ -1,11 +1,24 @@
 \documentclass[12pt, compress]{beamer}
 
 \usetheme{Frankfurt}
-\usepackage[utf8]{inputenc}
+\setbeamertemplate{footline}[page number]
+\beamertemplatenavigationsymbolsempty
 
+
+\usefonttheme{structurebold} % using non standard fonts for beamer
+%\usefonttheme{serif} % default family is serif
+
+
+\usepackage[utf8]{inputenc}
 \usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps, pgflibraryarrows, pgflibraryshapes,  pgflibraryshapes}
 \usepackage{tikz}
+\usepackage{minted}
 \usetikzlibrary{fadings}
+
+% Set verbatim font size. Using fancyvrb
+\usepackage{fancyvrb}
+\fvset{fontsize=\footnotesize}
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{}
 
 
 \title{Faut-il être masochiste pour utiliser IPv6 (dans son code Python) ?}
@@ -19,5 +32,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+\input{intro_ipv6}
+\input{python_ipv6}
 \end{document}
