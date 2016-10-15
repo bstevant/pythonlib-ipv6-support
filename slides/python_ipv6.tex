@@ -78,11 +78,20 @@ tcp4       0      0  *.50007                *.*
 	\frametitle{Une IPv6-fication naïve}
     \begin{minipage}{0.5\textwidth}
       \inputminted[mathescape,
+        fontsize=\scriptsize,
+        framesep=2mm]{diff}{../echo_server_v4_v6.diff}
+    \end{minipage}
+\end{frame}
+
+
+\begin{frame}[fragile]{}
+	\frametitle{Une IPv6-fication naïve}
+    \begin{minipage}{0.5\textwidth}
+      \inputminted[mathescape,
         linenos,
         fontsize=\scriptsize,
         framesep=2mm]{python}{../echo_server_v6_naif.py}
     \end{minipage}
-
 \end{frame}
 
 
