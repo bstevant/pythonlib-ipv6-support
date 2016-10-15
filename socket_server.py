@@ -11,7 +11,7 @@ s = None
 
 try:
     res = socket.getaddrinfo(HOST, PORT, socket.AF_INET6,
-                             socket.SOCK_STREAM, 0, socket.AI_PASSIVE|socket.AI_V4MAPPED|socket.AI_ADDRCONFIG)
+                             socket.SOCK_STREAM, 0, socket.AI_PASSIVE|socket.AI_V4MAPPED)
 except socket.gaierror as msg:
     print('Could not resolve hostname "{}": {}'.format(HOST, msg))
     sys.exit(1)
