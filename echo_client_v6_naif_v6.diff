@@ -2,7 +2,7 @@
 +++ echo_client_v6.py	2016-10-16 02:00:56.867059224 +0200
 @@ -3,8 +3,16 @@
  
- HOST = 'daring.cwi.nl'    # The remote host
+ HOST = 'localhost'        # The remote host
  PORT = 50007              # The same port as used by the server
 -with socket.socket(socket.AF_INET6, socket.SOCK_STREAM) as s:
 -    s.connect((HOST, PORT))

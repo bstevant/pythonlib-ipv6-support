@@ -1,7 +1,7 @@
 # Echo client program
 import socket
 
-HOST = 'daring.cwi.nl'    # The remote host
+HOST = 'localhost'    # The remote host
 PORT = 50007              # The same port as used by the server
 
 res = socket.getaddrinfo(HOST, PORT, socket.AF_INET6,
