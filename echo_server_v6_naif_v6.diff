@@ -1,0 +1,21 @@
+@@ -3,8 +3,11 @@
+ 
+ HOST = None               # None means all available interfaces
+ PORT = 50007              # Arbitrary non-privileged port
+-with socket.socket(socket.AF_INET6, socket.SOCK_STREAM) as s:
+-    s.bind((HOST, PORT))
++for af, socktype, proto, canonname, sa in socket.getaddrinfo(HOST, PORT,
++        socket.AF_INET6, socket.SOCK_STREAM, 0, socket.AI_PASSIVE|socket.AI_V4MAPPED):
++    try:
++        with socket.socket(af, socktype, proto) as s:
++            s.bind(sa)
+     s.listen(1)
+     conn, addr = s.accept()
+     with conn:
+@@ -13,3 +16,6 @@
+             data = conn.recv(1024)
+             if not data: break
+             conn.sendall(data)
++            break
++    except socket.error as msg:
++        continue
