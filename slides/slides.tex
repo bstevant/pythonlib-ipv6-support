@@ -20,6 +20,14 @@
 \fvset{fontsize=\footnotesize}
 \RecustomVerbatimEnvironment{verbatim}{Verbatim}{}
 
+\AtBeginSection{
+\begin{frame}
+\vspace{3cm}
+\begin{center}
+\structure{\Huge \insertsection}
+\end{center}
+\end{frame}
+}
 
 \title{Faut-il être masochiste pour utiliser IPv6 (dans son code Python) ?}
 \author{Bruno Stévant - Benjamin Cama (TB)}
@@ -34,4 +42,5 @@
 
 \input{intro_ipv6}
 \input{python_ipv6}
+\input{conclusion}
 \end{document}
