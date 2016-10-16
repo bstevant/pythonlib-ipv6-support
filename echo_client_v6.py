@@ -9,7 +9,7 @@ res = socket.getaddrinfo(HOST, PORT, socket.AF_INET6,
 for af, socktype, proto, canonname, sa in res:
     try:
         with socket.socket(af, socktype, proto) as s:
-            s.connect((HOST, PORT))
+            s.connect(sa)
             s.sendall(b'Hello, world')
             data = s.recv(1024)
             break
