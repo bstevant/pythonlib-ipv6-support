@@ -175,6 +175,20 @@ tcp46      0      0  *.50007                *.*
 	\end{itemize}
 }
 
+\frame{
+	\frametitle{getaddrinfo en un tableau}
+	Avec la famille d'adresse \texttt{AF\_INET6} (et toujours le flag \texttt{AI\_V4MAPPED}) :
+	\begin{tabular}{l l}
+		\textbf{Nœud} & \textbf{Adresse} \\
+		\hline
+		\emph{None} & \texttt{::} \scriptsize{(avec flag AI\_PASSIVE)} \\
+		\hline
+		\texttt{www.telecom-bretagne.eu} & \texttt{2001:660:7302:2::11}, \\ & \texttt{::ffff:192.108.117.241} \\
+		\hline
+		\texttt{2016.pycon.fr} & \texttt{::ffff:195.154.116.34} \\
+	\end{tabular}
+}
+
 \begin{frame}[fragile]{}
 	\frametitle{Un client IPv4}
     \begin{minipage}{0.5\textwidth}
