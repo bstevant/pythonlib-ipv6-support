@@ -127,9 +127,88 @@ tcp46      0      0  *.50007                *.*
 
 \end{frame}
 
+\frame{
+	\frametitle{Pour résumer, côté serveur}
+	L'API socket IPv6 apporte la compatibilité ascendante avec IPv4
+	\begin{itemize}
+		\item Les adresses IPv4 mappée représentent les hôtes IPv4
+		\item Les connexions IPv4 sont vues comme des connexion IPv6
+		\item L'application n'a plus à différencier la famille d'adresse
+	\end{itemize}
+	Attention, cette glue n'est disponible que sur les OS compatibles IPv6
+	\begin{itemize}
+		\item Désolé pas pour MS-DOS, BeOS, etc.
+	\end{itemize}
+}
+
+%\frame{
+%	\frametitle{Un dernier détail}
+%	Attention au paramètre \texttt{HOST} donné à la fonction socket
+%	\begin{itemize}
+%		\item
+%	\end{itemize}
+%}
 
 \frame{
-	\frametitle{}
+	\frametitle{Côté client\ldots}
+	Le client doit déterminer : 
+	\begin{itemize}
+		\item A quelle adresse envoyer sa requête
+		\begin{itemize}
+			\item<1->soit l'utilisateur fixe cette adresse
+			\item<2->soit elle est à résoudre à partir d'un nom
+		\end{itemize}
+		\item A quelle adresse le serveur enverra la réponse
+		\begin{itemize}
+			\item<3->Sélection de l'adresse source
+		\end{itemize}
+	\end{itemize}
+}
+
+\frame{
+	\frametitle{Résoudre un nom en adresse}
+	C'est la fonction du DNS, appelé par la fonction \texttt{socket.getaddrinfo}\footnote{\texttt{gethostbyname à proscrire car non compatible IPv6 !}}
+	\begin{itemize}
+		\item Résoud un nom en \emph{plusieurs} adresses \emph{IPv4 ou IPv6}
+		\item Peut aussi rendre au choix des adresses IPv4-mappées (uniformisation!)
+		\item Bonus: uniformisation des adresses fixées par l'utilisateur
+	\end{itemize}
+}
+
+\begin{frame}[fragile]{}
+	\frametitle{Un client IPv4}
+    \begin{minipage}{0.5\textwidth}
+      \inputminted[mathescape,
+        linenos,
+        fontsize=\scriptsize,
+        framesep=2mm]{python}{../echo_client_v4.py}
+    \end{minipage}
+	
+\end{frame}
+
+\begin{frame}[fragile]{}
+	\frametitle{Une IPv6-fication naïve}
+    \begin{minipage}{0.5\textwidth}
+      \inputminted[mathescape,
+        fontsize=\scriptsize,
+        framesep=2mm]{diff}{../echo_client_v4_v6.diff}
+    \end{minipage}
+\end{frame}
+
+
+\begin{frame}[fragile]{}
+	\frametitle{Une IPv6-fication naïve}
+    \begin{minipage}{0.5\textwidth}
+      \inputminted[mathescape,
+        linenos,
+        fontsize=\scriptsize,
+        framesep=2mm]{python}{../echo_client_v6_naif.py}
+    \end{minipage}
+\end{frame}
+
+
+\frame{
+	\frametitle{Un client IPv4}
 	\begin{itemize}
 		\item
 	\end{itemize}
