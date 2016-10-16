@@ -155,12 +155,12 @@ tcp46      0      0  *.50007                *.*
 	\begin{itemize}
 		\item A quelle adresse envoyer sa requête
 		\begin{itemize}
-			\item<1->soit l'utilisateur fixe cette adresse
-			\item<2->soit elle est à résoudre à partir d'un nom
+			\item<2->soit l'utilisateur fixe cette adresse
+			\item<3->soit elle est à résoudre à partir d'un nom
 		\end{itemize}
 		\item A quelle adresse le serveur enverra la réponse
 		\begin{itemize}
-			\item<3->Sélection de l'adresse source
+			\item<4->Sélection de l'adresse source
 		\end{itemize}
 	\end{itemize}
 }
@@ -198,19 +198,76 @@ tcp46      0      0  *.50007                *.*
 
 \begin{frame}[fragile]{}
 	\frametitle{Une IPv6-fication naïve}
-    \begin{minipage}{0.5\textwidth}
+    \begin{minipage}{\textwidth}
       \inputminted[mathescape,
         linenos,
         fontsize=\scriptsize,
         framesep=2mm]{python}{../echo_client_v6_naif.py}
+		Non satisfaisant: une seule adresse testée, pas d'uniformisation
+    \end{minipage}
+\end{frame}
+
+% Bypass
+\begin{frame}<presentation:0>[fragile]{}
+	\frametitle{Une IPv6-fication plus \emph{smart}}
+    \begin{minipage}{0.5\textwidth}
+      \inputminted[mathescape,
+        fontsize=\scriptsize,
+        framesep=2mm]{diff}{../echo_client_v6_naif_v6.diff}
+    \end{minipage}
+\end{frame}
+
+
+\begin{frame}[fragile]{}
+	\frametitle{Une IPv6-fication plus \emph{smart}}
+    \begin{minipage}{0.5\textwidth}
+      \inputminted[mathescape,
+        linenos,
+        fontsize=\scriptsize,
+        framesep=2mm]{python}{../echo_client_v6.py}
     \end{minipage}
 \end{frame}
 
 
 \frame{
-	\frametitle{Un client IPv4}
+	\frametitle{Sélection de l'adresse source}
+	Ce n'est pas (normalement) du ressort du programme.
+	
+	Une interface peut avoir : 
 	\begin{itemize}
-		\item
+		\item des adresses de familles différentes
+		\item plusieurs adresses d'une même famille (notamment IPv6)
 	\end{itemize}
+	
+	Laquelle choisir ?
+	
+	Certains cas sont délicats, mais il y a une RFC pour ça \url{http://www.bortzmeyer.org/6724.html}
 }
+
+\begin{frame}[fragile]{}
+	\frametitle{Retour sur le serveur}
+    \begin{minipage}{0.5\textwidth}
+      \inputminted[mathescape,
+        fontsize=\tiny,
+        framesep=2mm]{diff}{../echo_server_v6_naif_v6.diff}
+    \end{minipage}
+\end{frame}
+
+
+\begin{frame}[fragile]{}
+	\frametitle{Un serveur IPv6 \emph{smart}}
+    \begin{minipage}{\textwidth}
+      \inputminted[mathescape,
+        linenos,
+        fontsize=\tiny,
+        framesep=2mm]{python}{../echo_server_v6.py}
+    \end{minipage}
+\end{frame}
+
+%\frame{
+%	\frametitle{}
+%	\begin{itemize}
+%		\item
+%	\end{itemize}
+%}
 
